@@ -7,5 +7,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>camel-osgi-001</module>
+  	<module>dbcp2</module>
+  	<module>dbcp2-001</module>
   </modules>
 </project>
