@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<properties>
+		<camel-version>3.20.5</camel-version>
+	</properties>
+
+	<parent>
+		<groupId>it.codedump</groupId>
+		<artifactId>ramblings</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>camel-osgi-001</artifactId>
+
+	<packaging>bundle</packaging>
+	<name>Camel OSGI demo project</name>
+	<description>A simple skeleton for Camel OSGI bundles to be deployed inside
+		Karaf containers</description>
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>${camel-version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-blueprint</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-osgi</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+		<!-- Camel Maven Plugin (Optional) -->
+		<!--<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-maven-plugin</artifactId>
+			<version>${camel-version}</version>
+		</dependency>-->
+		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-timer</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-log</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		
+	</dependencies>
+
+
+	<build>
+
+		<finalName>cammello</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>5.1.9</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Export-Package>
+							it.codedump.camelosgi.*;version=${project.version}
+						</Export-Package>
+						<Import-Package>
+							*
+						</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<maxmem>256M</maxmem>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
